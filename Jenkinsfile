@@ -46,13 +46,23 @@ pipeline {
             }
         }
 
-        // stage("OWASP: Dependency check"){
-        //     steps{
-        //         script{
-        //             owasp_dependency()
-        //         }
-        //     }
-        // }
+        stage("Verify Dependency-Check Version") {
+            steps {
+                script {
+                    def dcHome = tool 'OWASP'
+                    sh "${dcHome}/bin/dependency-check.sh --version"
+                }
+            }
+        }
+
+
+        stage("OWASP: Dependency check"){
+            steps{
+                script{
+                    owasp_dependency()
+                }
+            }
+        }
         
         stage("SonarQube: Code Analysis"){
             steps{
