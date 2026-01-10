@@ -118,14 +118,24 @@ pipeline {
             }
         }
         
-        stage("Docker: Push to DockerHub"){
-            steps{
-                script{
-                    docker_push("wanderlust-backend-beta","${params.BACKEND_DOCKER_TAG}","trainwithshubham") 
-                    docker_push("wanderlust-frontend-beta","${params.FRONTEND_DOCKER_TAG}","trainwithshubham")
+        stage("Docker: Push to DockerHub") {
+            steps {
+                script {
+                    docker_push(
+                        imageName: "wanderlust-backend-beta",
+                        imageTag: params.BACKEND_DOCKER_TAG,
+                        credentials: "docker"
+                    )
+        
+                    docker_push(
+                        imageName: "wanderlust-frontend-beta",
+                        imageTag: params.FRONTEND_DOCKER_TAG,
+                        credentials: "docker" 
+                    )
                 }
             }
         }
+
     }
     // post{
     //     success{
