@@ -2,7 +2,7 @@
 set -e
 
 INSTANCE_ID="i-03f807dfe45640a84"
-REGION="us-east-2"   # <-- USE YOUR REAL REGION
+REGION="us-east-1" 
 
 echo "===== DEBUG INFO ====="
 echo "Running as user: $(whoami)"
