@@ -125,15 +125,26 @@ pipeline {
             steps{
                 script{
                         dir('backend'){
-                            docker_build("wanderlust-backend-beta","${params.BACKEND_DOCKER_TAG}","Dockerfile")
+                            docker_build(
+                                imageName: "wanderlust-backend-beta",
+                                imageTag: params.BACKEND_DOCKER_TAG,
+                                dockerfile: "Dockerfile",
+                                context: "."
+                            )
+
                         }
                     
                         dir('frontend'){
-                            docker_build("wanderlust-frontend-beta","${params.FRONTEND_DOCKER_TAG}","Dockerfile")
+                            docker_build(
+                                imageName: "wanderlust-frontend-beta",
+                                imageTag: params.FRONTEND_DOCKER_TAG,
+                                dockerfile: "Dockerfile",
+                                context: "."
+                            )
                         }
+                    }
                 }
             }
-        }
         
         stage("Docker: Push to DockerHub") {
             steps {
