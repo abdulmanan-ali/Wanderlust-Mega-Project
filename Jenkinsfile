@@ -126,7 +126,7 @@ pipeline {
                 script{
                         dir('backend'){
                             docker_build(
-                                imageName: "wanderlust-backend-beta",
+                                imageName: "abdulmanan46/wanderlust-backend-beta",
                                 imageTag: params.BACKEND_DOCKER_TAG,
                                 dockerfile: "Dockerfile",
                                 context: "."
@@ -136,7 +136,7 @@ pipeline {
                     
                         dir('frontend'){
                             docker_build(
-                                imageName: "wanderlust-frontend-beta",
+                                imageName: "abdulmanan46/wanderlust-frontend-beta",
                                 imageTag: params.FRONTEND_DOCKER_TAG,
                                 dockerfile: "Dockerfile",
                                 context: "."
@@ -150,13 +150,13 @@ pipeline {
             steps {
                 script {
                     docker_push(
-                        imageName: "wanderlust-backend-beta",
+                        imageName: "abdulmanan46/wanderlust-backend-beta",
                         imageTag: params.BACKEND_DOCKER_TAG,
                         credentials: "docker"
                     )
         
                     docker_push(
-                        imageName: "wanderlust-frontend-beta",
+                        imageName: "abdulmanan46/wanderlust-frontend-beta",
                         imageTag: params.FRONTEND_DOCKER_TAG,
                         credentials: "docker" 
                     )
