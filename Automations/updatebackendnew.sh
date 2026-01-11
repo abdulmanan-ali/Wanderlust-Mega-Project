@@ -1,10 +1,22 @@
 #!/bin/bash
+set -e
 
-# Set the Instance ID and path to the .env file
 INSTANCE_ID="i-03f807dfe45640a84"
+REGION="us-east-2"   # <-- USE YOUR REAL REGION
 
-# Retrieve the public IP address of the specified EC2 instance
-ipv4_address=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+echo "===== DEBUG INFO ====="
+echo "Running as user: $(whoami)"
+echo "Instance ID: $INSTANCE_ID"
+echo "Region: $REGION"
+echo "======================"
+
+ipv4_address=$(aws ec2 describe-instances \
+  --region "$REGION" \
+  --instance-ids "$INSTANCE_ID" \
+  --query 'Reservations[0].Instances[0].PublicIpAddress' \
+  --output text)
+
+echo "Resolved IP: $ipv4_address"
 
 # Path to the .env file
 file_to_find="../backend/.env.docker"
