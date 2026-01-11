@@ -79,6 +79,17 @@ pipeline {
                 }
             }
         }
+
+        stage("AWS Debug (Jenkins)") {
+            steps {
+                sh '''
+                echo "===== AWS IDENTITY ====="
+                aws sts get-caller-identity
+                echo "===== AWS CONFIG ====="
+                aws configure list
+                '''
+            }
+        }
         
         stage('Exporting environment variables') {
             parallel{
