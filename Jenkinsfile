@@ -2,13 +2,6 @@
 pipeline {
     // agent {label 'Node'}
     agent any
-
-    stage("REPO PROOF") {
-    steps {
-        echo "Running abdulmanan-ali repo"
-    }
-}
-
     
     environment{
         SONAR_HOME = tool "Sonar"
@@ -20,6 +13,12 @@ pipeline {
     }
     
     stages {
+        stage("REPO PROOF") {
+            steps {
+                echo "Running abdulmanan-ali repo"
+            }
+        }
+        
         stage("Validate Parameters") {
             steps {
                 script {
