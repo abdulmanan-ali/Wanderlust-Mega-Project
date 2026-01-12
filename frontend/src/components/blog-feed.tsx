@@ -89,10 +89,10 @@ export default function BlogFeed() {
           </div>
           <div>
             <div className="-mb-1 cursor-text text-base tracking-wide text-slate-500 dark:text-dark-tertiary">
-              What's new?
+              What's new?::>
             </div>
             <h2 className="mb-2 cursor-text text-xl font-semibold dark:text-dark-primary">
-              Latest Posts
+              Latest Postsss
             </h2>
             <div className="flex flex-col gap-4">
               {latestPosts.length === 0
