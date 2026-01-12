@@ -39,13 +39,15 @@ pipeline {
                 script{
                     dir('kubernetes'){
                         sh """
-                            sed -i -e s/wanderlust-backend-beta.*/wanderlust-backend-beta:${params.BACKEND_DOCKER_TAG}/g backend.yaml
+                            // sed -i -e s/wanderlust-backend-beta.*/wanderlust-backend-beta:${params.BACKEND_DOCKER_TAG}/g backend.yaml
+                            sed -i "s|image: .*wanderlust-backend-beta.*|image: abdulmanan46/wanderlust-backend-beta:${params.BACKEND_DOCKER_TAG}|" backend.yaml
                         """
                     }
                     
                     dir('kubernetes'){
                         sh """
-                            sed -i -e s/wanderlust-frontend-beta.*/wanderlust-frontend-beta:${params.FRONTEND_DOCKER_TAG}/g frontend.yaml
+                            // sed -i -e s/wanderlust-frontend-beta.*/wanderlust-frontend-beta:${params.FRONTEND_DOCKER_TAG}/g frontend.yaml
+                            sed -i "s|image: .*wanderlust-frontend-beta.*|image: abdulmanan46/wanderlust-frontend-beta:${params.FRONTEND_DOCKER_TAG}|" frontend.yaml
                         """
                     }
                     
@@ -65,7 +67,7 @@ pipeline {
                         git add .
                         
                         echo "Commiting changes: "
-                        git commit -m "Updated environment variables"
+                        git diff --cached --quiet || git commit -m "Update image tags"
                         
                         echo "Pushing changes to github: "
                         git push https://github.com/abdulmanan-ali/Wanderlust-Mega-Project.git main
