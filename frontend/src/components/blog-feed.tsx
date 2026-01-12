@@ -67,7 +67,7 @@ export default function BlogFeed() {
         <div className="w-full p-4 md:w-1/3">
           <div className="mb-6">
             <div className="-mb-1 cursor-text text-base tracking-wide text-light-tertiary dark:text-dark-tertiary">
-              Discover by topic
+              Discover by topiccc
             </div>
             <h2 className="mb-2 cursor-text text-xl font-semibold dark:text-dark-primary">
               Categories
